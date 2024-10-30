@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filtered Products</title>
+    <title>Products with Filter</title>
     <style>
-        /* Styling for the product display */
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
@@ -36,16 +35,11 @@
             padding: 20px;
             width: 300px;
             text-align: left;
-            transition: transform 0.2s;
-        }
-
-        .product:hover {
-            transform: scale(1.05);
         }
 
         .product h2 {
             color: #0056b3;
-            font-size: 1.5em;
+            font-size: 24px;
             margin-bottom: 10px;
         }
 
@@ -59,13 +53,11 @@
             font-weight: bold;
         }
     </style>
-    <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Filter Products by Category</h1>
+    <h1>Products by Category</h1>
     
-    <!-- Dropdown and Filter Button -->
     <select id="categorySelect">
         <option value="">Select a category</option>
     </select>
@@ -77,18 +69,15 @@
         $(document).ready(function() {
             $.getJSON("products.json", function(data) {
                 const categories = new Set();
-                
-                // Populate the categories set
+        
                 data.forEach(product => {
                     product.categories.forEach(category => categories.add(category));
                 });
 
-                // Add each unique category to the dropdown
                 categories.forEach(category => {
                     $('#categorySelect').append(`<option value="${category}">${category}</option>`);
                 });
 
-                // Filter products when the button is clicked
                 $('#filterButton').click(function() {
                     const selectedCategory = $('#categorySelect').val();
                     let filteredHtml = "";
@@ -101,7 +90,6 @@
                         }
                     });
 
-                    // If no category is selected, show a message
                     if (!selectedCategory) {
                         filteredHtml = "<p>Please select a category to filter products.</p>";
                     } else if (filteredHtml === "") {
