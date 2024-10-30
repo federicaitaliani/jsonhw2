@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Vintage T-shirt",
+        "description": "Tie-dye Grateful Dead T-shirt",
+        "price": "$35",
+        "categories": ["clothing", "vintage"]
+    },
+    {
+        "name": "Noise-Cancelling Headphones",
+        "description": "Wireless over-ear headphones with active noise cancellation",
+        "price": "$200",
+        "categories": ["electronics"]
+    },
+    {
+        "name": "Yoga Mat",
+        "description": "Non-slip yoga mat with extra cushioning",
+        "price": "$40",
+        "categories": ["sports", "wellness"]
+    },
+    {
+        "name": "Laptop Backpack",
+        "description": "Durable backpack with padded compartment for a 15-inch laptop",
+        "price": "$60",
+        "categories": ["clothing", "accessories"]
+    },
+    {
+        "name": "Wireless Earbuds",
+        "description": "Compact in-ear Bluetooth earbuds with charging case",
+        "price": "$120",
+        "categories": ["electronics", "wearables"]
+    },
+    {
+        "name": "Electric Kettle",
+        "description": "Stainless steel electric kettle with temperature control",
+        "price": "$45",
+        "categories": ["home", "appliances"]
+    },
+    {
+        "name": "Camping Tent",
+        "description": "Two-person waterproof tent with easy setup",
+        "price": "$120",
+        "categories": ["sports", "outdoors"]
+    },
+    {
+        "name": "Desk Lamp",
+        "description": "Adjustable LED desk lamp with USB charging port",
+        "price": "$35",
+        "categories": ["home", "office"]
+    }
+]

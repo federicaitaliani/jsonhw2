@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtered Products</title>
+    <style>
+        /* Styling for the product display */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #0056b3;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #productList {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.2s;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product h2 {
+            color: #0056b3;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .product p {
+            color: #555;
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
+        .product p:last-child {
+            font-weight: bold;
+        }
+    </style>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Filter Products by Category</h1>
+    
+    <!-- Dropdown and Filter Button -->
+    <select id="categorySelect">
+        <option value="">Select a category</option>
+    </select>
+    <button id="filterButton">Filter</button>
+    
+    <div id="filteredProducts"></div>
+    
+    <script>
+        $(document).ready(function() {
+            $.getJSON("products.json", function(data) {
+                const categories = new Set();
+                
+                // Populate the categories set
+                data.forEach(product => {
+                    product.categories.forEach(category => categories.add(category));
+                });
+
+                // Add each unique category to the dropdown
+                categories.forEach(category => {
+                    $('#categorySelect').append(`<option value="${category}">${category}</option>`);
+                });
+
+                // Filter products when the button is clicked
+                $('#filterButton').click(function() {
+                    const selectedCategory = $('#categorySelect').val();
+                    let filteredHtml = "";
+                    
+                    data.forEach(product => {
+                        if (product.categories.includes(selectedCategory)) {
+                            filteredHtml += `<div class="product">
+                                <h2>${product.name}</h2>
+                            </div>`;
+                        }
+                    });
+
+                    // If no category is selected, show a message
+                    if (!selectedCategory) {
+                        filteredHtml = "<p>Please select a category to filter products.</p>";
+                    } else if (filteredHtml === "") {
+                        filteredHtml = `<p>No products found in the "${selectedCategory}" category.</p>`;
+                    }
+                    
+                    $('#filteredProducts').html(filteredHtml);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
