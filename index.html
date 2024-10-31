@@ -65,9 +65,10 @@
     
     <div id="filteredProducts"></div>
     
-    <script>
+    <script language="javascript">
         $(document).ready(function() {
-            $.getJSON("products.json", function(data) {
+            $.get("products.json", 
+                function(data) {
                 const categories = new Set();
         
                 data.forEach(product => {
